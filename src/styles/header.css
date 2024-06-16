@@ -17,3 +17,31 @@ header {
   font-size: 1.4rem;
   text-decoration: underline;
 }
+nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  list-style-type: none;
+}
+.cart-container {
+  display: flex;
+  position: relative;
+}
+.cart-container .item-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #505457;
+  color: #e8ffe7;
+  font-size: 0.7rem;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  position: fixed;
+  top: 25px;
+  right: 25px;
+}
+.cart-container .header-icon {
+  font-size: 2.5rem;
+}

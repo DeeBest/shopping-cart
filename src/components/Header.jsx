@@ -24,7 +24,7 @@ const Header = () => {
         </ul>
       </nav>
       <div className="cart-container">
-        <span className="item-counter">0</span>
+        <span className="item-counter">100</span>
         <PiShoppingCart className="header-icon" />
       </div>
     </header>
