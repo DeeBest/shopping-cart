@@ -1,0 +1,19 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.logo-icon {
+  font-size: 3rem;
+  color: tomato;
+}
+.logo-container h1 {
+  font-size: 1.4rem;
+  text-decoration: underline;
+}
