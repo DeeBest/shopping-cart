@@ -1,29 +1,27 @@
-import Header from './components/Header';
-import Main from './components/Main';
-import Footer from './components/Footer';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  createRoutesFromElements,
+} from 'react-router-dom';
 
-import { useState, useEffect } from 'react';
+import HomePage from './pages/HomePage.jsx';
+import MainLayout from './layouts/MainLayout.jsx';
+import ShopPage from './pages/ShopPage.jsx';
+import ErrorPage from './pages/ErrorPage.jsx';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<MainLayout />}>
+      <Route index element={<HomePage />} />
+      <Route path="/shop" element={<ShopPage />} />
+      <Route path="*" element={<ErrorPage />} />
+    </Route>
+  )
+);
 
 function App() {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await (
-        await fetch('https://fakestoreapi.com/products')
-      ).json();
-      setProducts(response);
-    };
-    fetchData();
-  }, []);
-
-  return (
-    <>
-      <Header />
-      <Main products={products} />
-      <Footer />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

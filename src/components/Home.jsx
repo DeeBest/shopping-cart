@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import './../styles/main.css';
+import './../styles/home.css';
 import PopularWomen from './PopularWomen';
 import PopularMen from './PopularMen';
 import PopularJewelry from './PopularJewelry';
