@@ -1,10 +1,11 @@
-import React from 'react';
+import { useLoaderData } from 'react-router-dom';
 import Shop from '../components/Shop';
 
 const ShopPage = () => {
+  const products = useLoaderData();
   return (
     <>
-      <Shop />
+      <Shop products={products} />
     </>
   );
 };

@@ -1,19 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useLoaderData } from 'react-router-dom';
 
 import Home from '../components/Home';
 
 const HomePage = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await (
-        await fetch('https://fakestoreapi.com/products')
-      ).json();
-      setProducts(response);
-    };
-    fetchData();
-  }, []);
+  const products = useLoaderData();
 
   return (
     <>
@@ -22,4 +12,11 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+const productsLoader = async () => {
+  const products = await (
+    await fetch('https://fakestoreapi.com/products')
+  ).json();
+  return products;
+};
+
+export { HomePage as default, productsLoader };

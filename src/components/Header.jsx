@@ -1,7 +1,7 @@
 import './../styles/header.css';
 import { PiShoppingCart } from 'react-icons/pi';
 import { HiOutlineShoppingBag } from 'react-icons/hi2';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -13,19 +13,39 @@ const Header = () => {
       <nav>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <NavLink
+              className={({ isActive }) => (isActive ? 'active' : '')}
+              to="/"
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <Link to="shop">Shop</Link>
+            <NavLink
+              className={({ isActive }) => (isActive ? 'active' : '')}
+              to="shop"
+            >
+              Shop
+            </NavLink>
           </li>
           <li>
-            <Link to="contact">Contact</Link>
+            <NavLink
+              className={({ isActive }) => (isActive ? 'active' : '')}
+              to="contact"
+            >
+              Contact
+            </NavLink>
           </li>
         </ul>
       </nav>
       <div className="cart-container">
         <span className="item-counter">100</span>
-        <PiShoppingCart className="header-icon" />
+        <NavLink
+          className={({ isActive }) => (isActive ? 'active' : '')}
+          to="cart"
+        >
+          <PiShoppingCart className="header-icon" />
+        </NavLink>
       </div>
     </header>
   );

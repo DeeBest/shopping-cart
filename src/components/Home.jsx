@@ -11,7 +11,7 @@ import { FaLinkedinIn } from 'react-icons/fa';
 import { FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const Main = ({ products }) => {
+const Home = ({ products }) => {
   return (
     <main>
       <div className="hero">
@@ -34,11 +34,7 @@ const Main = ({ products }) => {
         <h1>Get Exclusive Offers Directly In Your Email.</h1>
         <p>Subscribe to our newsletter and stay updated.</p>
         <form onSubmit={(e) => e.preventDefault()}>
-          <input
-            type="email"
-            placeholder="Enter Your Email"
-            value={(e) => e.target.value}
-          />
+          <input type="email" placeholder="Enter Your Email" />
           <button className="subscribe-btn" type="button">
             Subscribe
           </button>
@@ -65,4 +61,4 @@ const Main = ({ products }) => {
   );
 };
 
-export default Main;
+export default Home;
