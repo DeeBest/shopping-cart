@@ -4,9 +4,7 @@ main {
   flex-direction: column;
   justify-content: center;
   gap: 30px;
-  border-top: 3px solid #505457;
-  border-bottom: 3px solid #505457;
-  padding: 20px 0px;
+  margin: 20px 0px;
 }
 .hero {
   display: flex;
@@ -31,7 +29,7 @@ main {
   justify-content: center;
 }
 .hero-image-container img {
-  width: 15rem;
+  width: 500px;
 }
 .hero-btn,
 .subscribe-btn {

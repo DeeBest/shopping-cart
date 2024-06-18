@@ -7,14 +7,33 @@
 html {
   font-size: 1.2rem;
 }
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+  min-width: 100vw;
+}
 #root {
   background-color: #e8ffe7;
   color: #505457;
-  min-height: 100vh;
-  min-width: 100vw;
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: 0px 50px;
+  position: relative;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+header,
+footer {
+  height: 70px;
+  opacity: 0.8;
+  position: sticky;
+  z-index: 99999;
+  background-color: #e8ffe7;
+}
+header,
+main,
+footer {
+  width: 100%;
 }
 a {
   text-decoration: none;
