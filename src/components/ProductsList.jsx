@@ -1,3 +1,5 @@
+import ProductCard from './ProductCard';
+
 const ProductsList = ({ products }) => {
   return (
     <div
@@ -11,14 +13,13 @@ const ProductsList = ({ products }) => {
     >
       {products.map((product) => {
         return (
-          <section className="product-card" key={product.id}>
-            <img src={product.image} alt={product.title} />
-            <div className="item-title-container">
-              <p>{product.title.slice(0, 50)}...</p>
-              <p className="product-price">${product.price}</p>
-            </div>
-            <button className="add-to-cart-btn">Add To Cart</button>
-          </section>
+          <ProductCard
+            key={product.id}
+            id={product.id}
+            imgUrl={product.image}
+            title={product.title}
+            price={product.price}
+          />
         );
       })}
     </div>

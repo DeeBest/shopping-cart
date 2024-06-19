@@ -1,4 +1,4 @@
-import React from 'react';
+import PopularItems from './PopularItems';
 
 const PopularMen = ({ products }) => {
   const menClothing = products.filter(
@@ -7,25 +7,7 @@ const PopularMen = ({ products }) => {
 
   const popularMen = menClothing.splice(0, 2);
 
-  return (
-    <section className="popular-products-container">
-      <h1>Popular In Men</h1>
-      <hr />
-      <div className="products-cards-container">
-        {popularMen.map((item) => {
-          return (
-            <section className="product-card" key={item.id}>
-              <img src={item.image} alt={item.title} />
-              <div className="item-title-container">
-                <p>{item.title}</p>
-                <p className="product-price">${item.price}</p>
-              </div>
-            </section>
-          );
-        })}
-      </div>
-    </section>
-  );
+  return <PopularItems heading="Popular In Men" popularItems={popularMen} />;
 };
 
 export default PopularMen;
