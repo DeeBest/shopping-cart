@@ -3,18 +3,19 @@ const ProductsList = ({ products }) => {
     <div
       className="products-cards-container"
       style={{
+        display: 'flex', // Added display flex to apply flex properties
         flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'center',
       }}
     >
-      {products.map((item) => {
+      {products.map((product) => {
         return (
-          <section className="product-card" key={item.id}>
-            <img src={item.image} alt={item.title} />
+          <section className="product-card" key={product.id}>
+            <img src={product.image} alt={product.title} />
             <div className="item-title-container">
-              <p>{item.title.slice(0, 50)}...</p>
-              <p className="product-price">${item.price}</p>
+              <p>{product.title.slice(0, 50)}...</p>
+              <p className="product-price">${product.price}</p>
             </div>
             <button className="add-to-cart-btn">Add To Cart</button>
           </section>

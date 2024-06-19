@@ -12,13 +12,11 @@ import ErrorPage from './pages/ErrorPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 import CartPage from './pages/CartPage.jsx';
 
-import productsLoader from './loaders/productsLoader.jsx';
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
-      <Route index element={<HomePage />} loader={productsLoader} />
-      <Route path="/shop" element={<ShopPage />} loader={productsLoader} />
+      <Route index element={<HomePage />} />
+      <Route path="/shop" element={<ShopPage />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="*" element={<ErrorPage />} />

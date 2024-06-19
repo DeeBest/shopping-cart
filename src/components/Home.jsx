@@ -8,9 +8,11 @@ import { FaFacebookF } from 'react-icons/fa';
 import { FaInstagram } from 'react-icons/fa';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { FaTwitter } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 
-const Home = ({ products }) => {
+const Home = () => {
+  const [products] = useOutletContext();
+
   return (
     <main>
       <div className="hero">

@@ -2,7 +2,7 @@ import { PiShoppingCart } from 'react-icons/pi';
 import { HiOutlineShoppingBag } from 'react-icons/hi2';
 import { NavLink } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ cartItemsCounter }) => {
   return (
     <header>
       <div className="logo-container">
@@ -38,7 +38,7 @@ const Header = () => {
         </ul>
       </nav>
       <div className="cart-container">
-        <span className="item-counter">100</span>
+        <span className="item-counter">{cartItemsCounter}</span>
         <NavLink
           className={({ isActive }) => (isActive ? 'active' : '')}
           to="cart"
