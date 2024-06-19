@@ -138,7 +138,8 @@ main {
 .hero-btn,
 .subscribe-btn,
 .add-to-cart-btn,
-.contact-form button {
+.contact-form button,
+.filter-btn {
   padding: 10px 20px;
   background-color: tomato;
   color: white;
@@ -154,7 +155,8 @@ main {
 .hero-btn:hover,
 .subscribe-btn:hover,
 .contact-form button:hover,
-.add-to-cart-btn:hover {
+.add-to-cart-btn:hover,
+.filter-btn:hover {
   opacity: 0.7;
   transform: scale(0.97);
   box-shadow: none;
@@ -162,7 +164,8 @@ main {
 .hero-btn:active,
 .subscribe-btn:active,
 .contact-form button:active,
-.add-to-cart-btn:active {
+.add-to-cart-btn:active,
+.filter-btn:active {
   opacity: 0.5;
   border: 1px solid #505457;
 }
@@ -197,6 +200,10 @@ hr {
   justify-content: center;
   gap: 15px;
 }
+.products-cards-container:hover > :not(:hover) {
+  opacity: 0.4;
+  transform: scale(0.98);
+}
 .product-card {
   display: flex;
   flex-direction: column;
@@ -208,6 +215,7 @@ hr {
   padding: 10px;
   border: none;
   border-radius: 10px;
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
 }
 .product-img-container {
   flex: 1;
@@ -314,8 +322,10 @@ footer .icons-container {
 }
 .contact-page {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 10px;
 }
 .contact-form {
   display: flex;
@@ -332,7 +342,8 @@ footer .icons-container {
   resize: none;
 }
 .contact-form button,
-.add-to-cart-btn {
+.add-to-cart-btn,
+.filter-btn {
   font-size: 1rem;
   padding: 4px 8px;
   width: 100%;
@@ -343,4 +354,16 @@ footer .icons-container {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+.products-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+}
+.filter-btn {
+  padding: 5px 10px;
+  width: 150px;
 }

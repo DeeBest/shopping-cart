@@ -1,5 +1,5 @@
 import ProductsList from './ProductsList';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, NavLink } from 'react-router-dom';
 
 const Shop = () => {
   const [products, setProducts, originalProducts] = useOutletContext();
@@ -41,11 +41,21 @@ const Shop = () => {
       <h1>Shop Now</h1>
       <hr />
       <aside className="products-filter">
-        <button onClick={filterMen}>Men</button>
-        <button onClick={filterWomen}>Women</button>
-        <button onClick={filterJewelry}>Jewelry</button>
-        <button onClick={filterElectronics}>Electronics</button>
-        <button onClick={resetFilters}>All</button>
+        <button className="filter-btn" onClick={filterMen}>
+          Men
+        </button>
+        <button className="filter-btn" onClick={filterWomen}>
+          Women
+        </button>
+        <button className="filter-btn" onClick={filterJewelry}>
+          Jewelry
+        </button>
+        <button className="filter-btn" onClick={filterElectronics}>
+          Electronics
+        </button>
+        <button className="filter-btn" onClick={resetFilters}>
+          All
+        </button>
       </aside>
       <div
         style={{

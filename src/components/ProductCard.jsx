@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ProductCard = ({ isHome = false, id, imgUrl, title, price }) => {
   return (
     <section className="product-card" key={id}>
