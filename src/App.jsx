@@ -5,12 +5,14 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 
-import HomePage, { productsLoader } from './pages/HomePage.jsx';
+import HomePage from './pages/HomePage.jsx';
 import MainLayout from './layouts/MainLayout.jsx';
 import ShopPage from './pages/ShopPage.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 import CartPage from './pages/CartPage.jsx';
+
+import productsLoader from './loaders/productsLoader.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

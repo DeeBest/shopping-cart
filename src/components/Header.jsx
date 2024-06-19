@@ -1,4 +1,3 @@
-import './../styles/header.css';
 import { PiShoppingCart } from 'react-icons/pi';
 import { HiOutlineShoppingBag } from 'react-icons/hi2';
 import { NavLink } from 'react-router-dom';

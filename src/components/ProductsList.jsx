@@ -16,7 +16,7 @@ const ProductsList = ({ products }) => {
               <p>{item.title.slice(0, 50)}...</p>
               <p className="product-price">${item.price}</p>
             </div>
-            <button>Add To Cart</button>
+            <button className="add-to-cart-btn">Add To Cart</button>
           </section>
         );
       })}

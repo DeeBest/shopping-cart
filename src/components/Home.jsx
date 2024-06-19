@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import './../styles/home.css';
 import PopularWomen from './PopularWomen';
 import PopularMen from './PopularMen';
 import PopularJewelry from './PopularJewelry';
@@ -21,7 +20,9 @@ const Home = ({ products }) => {
         </section>
         <section className="hero-image-container">
           <img src="public/assets/images/hero-img.jpg" alt="hero image" />
-          <button className="hero-btn">Shop Now</button>
+          <Link to="shop">
+            <button className="hero-btn">Shop Now</button>
+          </Link>
         </section>
       </div>
       <div className="popular-section">
