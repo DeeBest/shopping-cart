@@ -10,6 +10,7 @@ const MainLayout = () => {
   const [products, setProducts] = useState([]);
   const [originalProducts, setOriginalProducts] = useState([]);
   const [cartItemsCounter, setCartItemsCounter] = useState(0);
+  const [itemsCounter, setItemsCounter] = useState(0);
 
   useEffect(() => {
     try {

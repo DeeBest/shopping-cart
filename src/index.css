@@ -139,7 +139,8 @@ main {
 .subscribe-btn,
 .add-to-cart-btn,
 .contact-form button,
-.filter-btn {
+.filter-btn,
+.quantity-btn {
   padding: 10px 20px;
   background-color: tomato;
   color: white;
@@ -156,7 +157,8 @@ main {
 .subscribe-btn:hover,
 .contact-form button:hover,
 .add-to-cart-btn:hover,
-.filter-btn:hover {
+.filter-btn:hover,
+.quantity-btn:hover {
   opacity: 0.7;
   transform: scale(0.97);
   box-shadow: none;
@@ -165,7 +167,8 @@ main {
 .subscribe-btn:active,
 .contact-form button:active,
 .add-to-cart-btn:active,
-.filter-btn:active {
+.filter-btn:active,
+.quantity-btn:active {
   opacity: 0.5;
   border: 1px solid #505457;
 }
@@ -243,6 +246,32 @@ hr {
 .product-price {
   color: tomato;
   font-weight: 600;
+}
+.price-quantity-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.quantity-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 5px;
+  padding: 5px;
+}
+.quantity-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding: 5px;
+  font-size: 1rem;
+}
+.decrease-quantity-btn {
+  background-color: #d53332;
+}
+.increase-quantity-btn {
+  background-color: #0dc21d;
 }
 .subscription-section {
   flex-direction: column;
