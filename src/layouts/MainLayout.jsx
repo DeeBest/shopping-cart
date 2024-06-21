@@ -9,8 +9,9 @@ const MainLayout = () => {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [originalProducts, setOriginalProducts] = useState([]);
-  const [cartItemsCounter, setCartItemsCounter] = useState(0);
   const [itemsInCart, setAddItemsInCart] = useState([]);
+  const [productsInCart, setProductsInCart] = useState([]);
+  const [cartItemsCounter, setCartItemsCounter] = useState(0);
 
   useEffect(() => {
     try {
@@ -43,6 +44,9 @@ const MainLayout = () => {
               originalProducts,
               loading,
               itemsInCart,
+              setCartItemsCounter,
+              productsInCart,
+              setProductsInCart,
             }}
           />
           <Footer />

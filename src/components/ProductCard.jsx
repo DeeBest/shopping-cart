@@ -1,22 +1,37 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-// import { useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 
 const ProductCard = ({ isHome = false, id, imgUrl, title, price, product }) => {
-  const [itemsCounter, setItemsCounter] = useState(0);
-  const [productsInCart, setProductsInCart] = useState([]);
-  // const { a } = useOutletContext();
+  const { setCartItemsCounter, productsInCart, setProductsInCart } =
+    useOutletContext();
+  const [itemsCounter, setItemsCounter] = useState(1);
+  const [priceUpdate, setPriceUpdate] = useState(Number(price));
 
-  const increaseQuantity = () => setItemsCounter((prev) => prev + 1);
+  const increaseQuantity = () => {
+    setItemsCounter((prev) => {
+      const newCounter = prev + 1;
+      setPriceUpdate(Number(price) * newCounter);
+      return newCounter;
+    });
+  };
+
   const decreaseQuantity = () => {
-    if (itemsCounter > 0) {
-      setItemsCounter((prev) => prev - 1);
+    if (itemsCounter > 1) {
+      setItemsCounter((prev) => {
+        const newCounter = prev - 1;
+        setPriceUpdate(Number(price) * newCounter);
+        return newCounter;
+      });
     }
   };
 
   const addProductToCart = (item) => {
-    setProductsInCart((prevProducts) => [...prevProducts, item]);
-    console.log(productsInCart);
+    setProductsInCart((prevProducts) => {
+      const updatedProducts = [...prevProducts, item];
+      setCartItemsCounter(updatedProducts.length);
+      return updatedProducts;
+    });
   };
 
   return (
@@ -27,7 +42,7 @@ const ProductCard = ({ isHome = false, id, imgUrl, title, price, product }) => {
       <div className="item-title-container">
         <p>{title}</p>
         <div className="price-quantity-container">
-          <p className="product-price">${price}</p>
+          <p className="product-price">${priceUpdate.toFixed(2)}</p>
           {isHome ? null : (
             <div className="quantity-container">
               <button
