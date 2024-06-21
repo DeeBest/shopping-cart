@@ -10,7 +10,7 @@ const MainLayout = () => {
   const [products, setProducts] = useState([]);
   const [originalProducts, setOriginalProducts] = useState([]);
   const [cartItemsCounter, setCartItemsCounter] = useState(0);
-  const [itemsCounter, setItemsCounter] = useState(0);
+  const [itemsInCart, setAddItemsInCart] = useState([]);
 
   useEffect(() => {
     try {
@@ -37,13 +37,13 @@ const MainLayout = () => {
         <>
           <Header cartItemsCounter={cartItemsCounter} />
           <Outlet
-            context={[
+            context={{
               products,
               setProducts,
               originalProducts,
               loading,
-              setLoading,
-            ]}
+              itemsInCart,
+            }}
           />
           <Footer />
         </>

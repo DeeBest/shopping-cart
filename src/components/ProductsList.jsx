@@ -1,16 +1,11 @@
 import ProductCard from './ProductCard';
+import { useOutletContext } from 'react-router-dom';
 
-const ProductsList = ({ products }) => {
+const ProductsList = () => {
+  const { products } = useOutletContext();
+
   return (
-    <div
-      className="products-cards-container"
-      style={{
-        display: 'flex', // Added display flex to apply flex properties
-        flexWrap: 'wrap',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <div className="products-cards-container">
       {products.map((product) => {
         return (
           <ProductCard
@@ -19,6 +14,7 @@ const ProductsList = ({ products }) => {
             imgUrl={product.image}
             title={product.title}
             price={product.price}
+            product={product}
           />
         );
       })}

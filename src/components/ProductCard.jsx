@@ -1,13 +1,22 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
+// import { useOutletContext } from 'react-router-dom';
 
-const ProductCard = ({ isHome = false, id, imgUrl, title, price }) => {
+const ProductCard = ({ isHome = false, id, imgUrl, title, price, product }) => {
   const [itemsCounter, setItemsCounter] = useState(0);
+  const [productsInCart, setProductsInCart] = useState([]);
+  // const { a } = useOutletContext();
 
   const increaseQuantity = () => setItemsCounter((prev) => prev + 1);
   const decreaseQuantity = () => {
     if (itemsCounter > 0) {
       setItemsCounter((prev) => prev - 1);
     }
+  };
+
+  const addProductToCart = (item) => {
+    setProductsInCart((prevProducts) => [...prevProducts, item]);
+    console.log(productsInCart);
   };
 
   return (
@@ -38,7 +47,14 @@ const ProductCard = ({ isHome = false, id, imgUrl, title, price }) => {
           )}
         </div>
       </div>
-      {isHome ? null : <button className="add-to-cart-btn">Add To Cart</button>}
+      {isHome ? null : (
+        <button
+          onClick={() => addProductToCart(product)}
+          className="add-to-cart-btn"
+        >
+          Add To Cart
+        </button>
+      )}
     </section>
   );
 };

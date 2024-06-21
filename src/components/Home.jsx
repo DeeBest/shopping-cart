@@ -8,11 +8,9 @@ import { FaFacebookF } from 'react-icons/fa';
 import { FaInstagram } from 'react-icons/fa';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { FaTwitter } from 'react-icons/fa';
-import { Link, useOutletContext } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const [products] = useOutletContext();
-
   return (
     <main>
       <div className="hero">
@@ -28,10 +26,10 @@ const Home = () => {
         </section>
       </div>
       <div className="popular-section">
-        <PopularWomen products={products} />
-        <PopularMen products={products} />
-        <PopularJewelry products={products} />
-        <PopularElectronics products={products} />
+        <PopularWomen />
+        <PopularMen />
+        <PopularJewelry />
+        <PopularElectronics />
       </div>
       <div className="subscription-section hero">
         <h1>Get Exclusive Offers Directly In Your Email.</h1>

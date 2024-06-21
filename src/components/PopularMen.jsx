@@ -1,6 +1,9 @@
 import PopularItems from './PopularItems';
+import { useOutletContext } from 'react-router-dom';
 
-const PopularMen = ({ products }) => {
+const PopularMen = () => {
+  const { products } = useOutletContext();
+
   const menClothing = products.filter(
     (product) => product.category === `men's clothing`
   );

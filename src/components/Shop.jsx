@@ -1,8 +1,10 @@
 import ProductsList from './ProductsList';
-import { useOutletContext, NavLink } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
+import Spinner from './Spinner';
 
 const Shop = () => {
-  const [products, setProducts, originalProducts] = useOutletContext();
+  const { product, setProducts, originalProducts, loading } =
+    useOutletContext();
 
   const filterMen = () => {
     const menClothing = originalProducts.filter(
@@ -35,41 +37,46 @@ const Shop = () => {
   const resetFilters = () => {
     setProducts(originalProducts);
   };
-
-  return (
-    <main className="shop">
-      <h1>Shop Now</h1>
-      <hr />
-      <aside className="products-filter">
-        <button className="filter-btn" onClick={filterMen}>
-          Men
-        </button>
-        <button className="filter-btn" onClick={filterWomen}>
-          Women
-        </button>
-        <button className="filter-btn" onClick={filterJewelry}>
-          Jewelry
-        </button>
-        <button className="filter-btn" onClick={filterElectronics}>
-          Electronics
-        </button>
-        <button className="filter-btn" onClick={resetFilters}>
-          All
-        </button>
-      </aside>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '20px',
-        }}
-      >
-        <ProductsList products={products} />
-      </div>
-    </main>
-  );
+  {
+    if (loading) {
+      return <Spinner />;
+    } else {
+      return (
+        <main className="shop">
+          <h1>Shop Now</h1>
+          <hr />
+          <aside className="products-filter">
+            <button className="filter-btn" onClick={filterMen}>
+              Men
+            </button>
+            <button className="filter-btn" onClick={filterWomen}>
+              Women
+            </button>
+            <button className="filter-btn" onClick={filterJewelry}>
+              Jewelry
+            </button>
+            <button className="filter-btn" onClick={filterElectronics}>
+              Electronics
+            </button>
+            <button className="filter-btn" onClick={resetFilters}>
+              All
+            </button>
+          </aside>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '20px',
+            }}
+          >
+            <ProductsList />
+          </div>
+        </main>
+      );
+    }
+  }
 };
 
 export default Shop;
