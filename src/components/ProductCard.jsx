@@ -1,14 +1,26 @@
 /* eslint-disable react/prop-types */
 
 import { useOutletContext } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 const ProductCard = ({ isHome = false, id, imgUrl, title, price, product }) => {
-  const { setCartItemsCounter, setProductsInCart } = useOutletContext();
+  const { productsInCart, setCartItemsCounter, setProductsInCart } =
+    useOutletContext();
+  const [isAdded, setIsAdded] = useState(false);
+
+  // Check if the product is already in the cart when the component mounts
+  useEffect(() => {
+    const isProductInCart = productsInCart.some(
+      (cartItem) => cartItem.id === id
+    );
+    setIsAdded(isProductInCart);
+  }, [productsInCart, id]);
 
   const addProductToCart = (item) => {
     setProductsInCart((prevProducts) => {
       const updatedProducts = [...prevProducts, item];
       setCartItemsCounter(updatedProducts.length);
+      setIsAdded(true); // Set the state to true once the item is added
       return updatedProducts;
     });
   };
@@ -28,8 +40,9 @@ const ProductCard = ({ isHome = false, id, imgUrl, title, price, product }) => {
         <button
           onClick={() => addProductToCart(product)}
           className="add-to-cart-btn"
+          disabled={isAdded} // Disable the button if the item is already added
         >
-          Add To Cart
+          {isAdded ? 'Item Already Added' : 'Add To Cart'}
         </button>
       )}
     </section>

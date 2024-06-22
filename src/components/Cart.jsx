@@ -1,5 +1,5 @@
 import { useOutletContext } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Cart = () => {
   const { productsInCart, setProductsInCart, setCartItemsCounter } =
@@ -11,6 +11,19 @@ const Cart = () => {
       return acc;
     }, {})
   );
+
+  // Function to update the total cart items counter
+  const updateCartItemsCounter = () => {
+    const totalItems = Object.values(quantities).reduce(
+      (acc, quantity) => acc + quantity,
+      0
+    );
+    setCartItemsCounter(totalItems);
+  };
+
+  useEffect(() => {
+    updateCartItemsCounter(); // Update the counter whenever quantities change
+  }, [quantities]);
 
   const increaseQuantity = (id) => {
     setQuantities((prevQuantities) => ({
@@ -32,7 +45,6 @@ const Cart = () => {
   const deleteItemInCart = (id) => {
     const newList = productsInCart.filter((item) => item.id !== id);
     setProductsInCart(newList);
-    setCartItemsCounter((prev) => prev - 1);
 
     // Remove the item from the quantities state
     setQuantities((prevQuantities) => {
@@ -42,18 +54,20 @@ const Cart = () => {
   };
 
   const calculateTotalCost = () => {
-    return productsInCart
-      .reduce((total, item) => {
-        return total + item.price * (quantities[item.id] || 1);
-      }, 0)
-      .toFixed(2);
+    return productsInCart.reduce((total, item) => {
+      return total + item.price * (quantities[item.id] || 1);
+    }, 0);
   };
 
   const clearCart = () => {
     setProductsInCart([]);
     setQuantities({});
-    setCartItemsCounter(0);
+    setCartItemsCounter(0); // Reset the cart items counter
   };
+
+  const totalCost = calculateTotalCost();
+  const shippingFee = totalCost * 0.1;
+  const finalCost = (totalCost + shippingFee).toFixed(2);
 
   return (
     <main className="cart">
@@ -74,9 +88,7 @@ const Cart = () => {
                     <div className="title-btns-price-container">
                       <h4>{item.title}</h4>
                       <div className="quantity-container">
-                        <p className="product-price">
-                          Item(s) Price: ${item.price}
-                        </p>
+                        <p className="product-price">${item.price}</p>
                         <div>
                           <button
                             className="quantity-btn decrease-quantity-btn"
@@ -106,8 +118,16 @@ const Cart = () => {
             </div>
             <div className="clear-cart-container">
               <div>
-                <p>Total Costs:</p>
-                <p>${calculateTotalCost()}</p>
+                <p>Sub Total:</p>
+                <p>${totalCost.toFixed(2)}</p>
+              </div>
+              <div>
+                <p>Shipping Fee:</p>
+                <p>10%</p>
+              </div>
+              <div>
+                <p>Total Cost:</p>
+                <p>${finalCost}</p>
               </div>
               <button onClick={clearCart}>Check Out</button>
             </div>
