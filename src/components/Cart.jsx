@@ -2,27 +2,57 @@ import { useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
 
 const Cart = () => {
-  const { productsInCart } = useOutletContext();
+  const { productsInCart, setProductsInCart, setCartItemsCounter } =
+    useOutletContext();
 
-  const [itemsCounter, setItemsCounter] = useState(1);
-  // const [priceUpdate, setPriceUpdate] = useState(Number(price));
+  const [quantities, setQuantities] = useState(
+    productsInCart.reduce((acc, item) => {
+      acc[item.id] = 1;
+      return acc;
+    }, {})
+  );
 
-  const increaseQuantity = () => {
-    setItemsCounter((prev) => {
-      const newCounter = prev + 1;
-      // setPriceUpdate(Number(price) * newCounter);
-      return newCounter;
+  const increaseQuantity = (id) => {
+    setQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [id]: prevQuantities[id] + 1,
+    }));
+  };
+
+  const decreaseQuantity = (id) => {
+    setQuantities((prevQuantities) => {
+      const newQuantity = Math.max(prevQuantities[id] - 1, 1);
+      return {
+        ...prevQuantities,
+        [id]: newQuantity,
+      };
     });
   };
 
-  const decreaseQuantity = () => {
-    if (itemsCounter > 1) {
-      setItemsCounter((prev) => {
-        const newCounter = prev - 1;
-        // setPriceUpdate(Number(price) * newCounter);
-        return newCounter;
-      });
-    }
+  const deleteItemInCart = (id) => {
+    const newList = productsInCart.filter((item) => item.id !== id);
+    setProductsInCart(newList);
+    setCartItemsCounter((prev) => prev - 1);
+
+    // Remove the item from the quantities state
+    setQuantities((prevQuantities) => {
+      const { [id]: _, ...rest } = prevQuantities;
+      return rest;
+    });
+  };
+
+  const calculateTotalCost = () => {
+    return productsInCart
+      .reduce((total, item) => {
+        return total + item.price * (quantities[item.id] || 1);
+      }, 0)
+      .toFixed(2);
+  };
+
+  const clearCart = () => {
+    setProductsInCart([]);
+    setQuantities({});
+    setCartItemsCounter(0);
   };
 
   return (
@@ -30,48 +60,59 @@ const Cart = () => {
       <h1>Cart</h1>
       <hr />
       <section>
-        <div className="cart-items-container">
-          {productsInCart.map((item) => {
-            return (
-              <div key={item.id} className="cart-item">
-                <div className="cart-item-img-container">
-                  <img src={item.image} alt={item.title} />
-                </div>
-                <div className="title-btns-price-container">
-                  <h4>{item.title}</h4>
-                  <div className="quantity-container">
-                    <p className="product-price">
-                      Item(s) Price: ${item.price}
-                    </p>
-                    <div>
+        {productsInCart.length === 0 ? (
+          <h1>You don&apos;t have products in your cart.</h1>
+        ) : (
+          <>
+            <div className="cart-items-container">
+              {productsInCart.map((item) => {
+                return (
+                  <div key={item.id} className="cart-item">
+                    <div className="cart-item-img-container">
+                      <img src={item.image} alt={item.title} />
+                    </div>
+                    <div className="title-btns-price-container">
+                      <h4>{item.title}</h4>
+                      <div className="quantity-container">
+                        <p className="product-price">
+                          Item(s) Price: ${item.price}
+                        </p>
+                        <div>
+                          <button
+                            className="quantity-btn decrease-quantity-btn"
+                            onClick={() => decreaseQuantity(item.id)}
+                          >
+                            -
+                          </button>
+                          <span>{quantities[item.id]}</span>
+                          <button
+                            className="quantity-btn increase-quantity-btn"
+                            onClick={() => increaseQuantity(item.id)}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
                       <button
-                        className="quantity-btn decrease-quantity-btn"
-                        onClick={() => decreaseQuantity()}
+                        onClick={() => deleteItemInCart(item.id)}
+                        className="del-item-in-cart-btn"
                       >
-                        -
-                      </button>
-                      <span>{itemsCounter}</span>
-                      <button
-                        className="quantity-btn increase-quantity-btn"
-                        onClick={() => increaseQuantity()}
-                      >
-                        +
+                        Delete Item
                       </button>
                     </div>
                   </div>
-                  <button className="del-item-in-cart-btn">Delete Item</button>
-                </div>
+                );
+              })}
+            </div>
+            <div className="clear-cart-container">
+              <div>
+                <p>Total Costs:</p>
+                <p>${calculateTotalCost()}</p>
               </div>
-            );
-          })}
-        </div>
-        <div className="clear-cart-container">
-          <div>
-            <p>Total Costs:</p>
-            <p>$300</p>
-          </div>
-          <button>Clear Cart</button>
-        </div>
+              <button onClick={clearCart}>Check Out</button>
+            </div>
+          </>
+        )}
       </section>
     </main>
   );
