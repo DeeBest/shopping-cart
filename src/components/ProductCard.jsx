@@ -3,7 +3,15 @@
 import { useOutletContext } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-const ProductCard = ({ isHome = false, id, imgUrl, title, price, product }) => {
+const ProductCard = ({
+  isHome = false,
+  id,
+  imgUrl,
+  title,
+  price,
+  product,
+  addedItemNotification,
+}) => {
   const { productsInCart, setCartItemsCounter, setProductsInCart } =
     useOutletContext();
   const [isAdded, setIsAdded] = useState(false);
@@ -23,29 +31,32 @@ const ProductCard = ({ isHome = false, id, imgUrl, title, price, product }) => {
       setIsAdded(true); // Set the state to true once the item is added
       return updatedProducts;
     });
+    addedItemNotification();
   };
 
   return (
-    <section className="product-card" key={id}>
-      <div className="product-img-container">
-        <img src={imgUrl} alt={title} />
-      </div>
-      <div className="item-title-container">
-        <p>{title}</p>
-        <div className="price-quantity-container">
-          <p className="product-price">${price}</p>
+    <>
+      <section className="product-card" key={id}>
+        <div className="product-img-container">
+          <img src={imgUrl} alt={title} />
         </div>
-      </div>
-      {isHome ? null : (
-        <button
-          onClick={() => addProductToCart(product)}
-          className="add-to-cart-btn"
-          disabled={isAdded} // Disable the button if the item is already added
-        >
-          {isAdded ? 'Item Already Added' : 'Add To Cart'}
-        </button>
-      )}
-    </section>
+        <div className="item-title-container">
+          <p>{title}</p>
+          <div className="price-quantity-container">
+            <p className="product-price">${price}</p>
+          </div>
+        </div>
+        {isHome ? null : (
+          <button
+            onClick={() => addProductToCart(product)}
+            className="add-to-cart-btn"
+            disabled={isAdded} // Disable the button if the item is already added
+          >
+            {isAdded ? 'Item Already Added' : 'Add To Cart'}
+          </button>
+        )}
+      </section>
+    </>
   );
 };
 

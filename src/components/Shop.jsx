@@ -1,10 +1,16 @@
 import ProductsList from './ProductsList';
 import { useOutletContext } from 'react-router-dom';
 import Spinner from './Spinner';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Shop = () => {
   const { product, setProducts, originalProducts, loading } =
     useOutletContext();
+
+  const addedItemNotification = () => {
+    toast.success('Item successfully added to the cart !');
+  };
 
   const filterMen = () => {
     const menClothing = originalProducts.filter(
@@ -71,8 +77,13 @@ const Shop = () => {
               gap: '20px',
             }}
           >
-            <ProductsList />
+            <ProductsList addedItemNotification={addedItemNotification} />
           </div>
+          <ToastContainer
+            style={{
+              zIndex: '10000000000',
+            }}
+          />
         </main>
       );
     }

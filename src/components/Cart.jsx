@@ -1,9 +1,19 @@
 import { useOutletContext } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Cart = () => {
   const { productsInCart, setProductsInCart, setCartItemsCounter } =
     useOutletContext();
+
+  const clearedCartNotification = () => {
+    toast.success('Successfully checked out !');
+  };
+
+  const deleteNotification = () => {
+    toast.error('Item removed from cart !');
+  };
 
   const [quantities, setQuantities] = useState(
     productsInCart.reduce((acc, item) => {
@@ -51,6 +61,7 @@ const Cart = () => {
       const { [id]: _, ...rest } = prevQuantities;
       return rest;
     });
+    deleteNotification();
   };
 
   const calculateTotalCost = () => {
@@ -63,6 +74,7 @@ const Cart = () => {
     setProductsInCart([]);
     setQuantities({});
     setCartItemsCounter(0); // Reset the cart items counter
+    clearedCartNotification();
   };
 
   const totalCost = calculateTotalCost();
@@ -75,7 +87,7 @@ const Cart = () => {
       <hr />
       <section>
         {productsInCart.length === 0 ? (
-          <h1>You don&apos;t have products in your cart.</h1>
+          <h1>You don&apos;t have products in your cart.🥲</h1>
         ) : (
           <>
             <div className="cart-items-container">
@@ -134,6 +146,11 @@ const Cart = () => {
           </>
         )}
       </section>
+      <ToastContainer
+        style={{
+          zIndex: '10000000000',
+        }}
+      />
     </main>
   );
 };
