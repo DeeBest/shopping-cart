@@ -1,8 +1,41 @@
-# React + Vite
+# SHOPPING CART
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![screenshot1 of the app](src/assets/images/Screenshot1.png)
 
-Currently, two official plugins are available:
+Check it _**LIVE**_ 👉
+**<https://deebest.github.io/shopping-cart/>**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A multi page _**Shopping Cart**_ web application I built with HTML,CSS,JavaScript and React. It's multi page application, I used react router dom. Notifications are displayed when items are added or deleted in the cart, I use toastify for that and I use react icons for the icons. I fetch the items from a free api called fakeStore api.
+
+![screenshot2 of the app](src/assets/images/Screenshot2.png)
+
+## Uses
+
+It simulates real life online shopping store with multiple pages, and shopping items to choose from and add them to the cart.
+
+![screenshot3 of the app](src/assets/images/Screenshot3.png)
+
+## Tech Stack Used
+
+- GIT
+- HTML
+- CSS
+- JavaScript
+- React
+
+![screenshot4 of the app](src/assets/images/Screenshot4.png)
+
+## Get In Touch 👇
+
+Email : **<simphiwedladla8@gmail.com>**
+
+Linked: **<https://www.linkedin.com/in/dladla-simphiwe-89061a20a/>**
+
+Github: **<https://github.com/DeeBest>**
+
+Portfolio: **<https://deebest.github.io/personal-webpage/>**
+
+## Credits
+
+images from the FakeStore api, link below.
+**<https://fakestoreapi.com/>**

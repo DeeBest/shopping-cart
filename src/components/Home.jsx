@@ -9,6 +9,7 @@ import { FaInstagram } from 'react-icons/fa';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import heroImg from '../assets/images/hero-img.jpg';
 
 const Home = () => {
   return (
@@ -19,7 +20,7 @@ const Home = () => {
           <h1>We&apos;ve got something for everyone don&apos;t miss out. 🏃‍♀️</h1>
         </section>
         <section className="hero-image-container">
-          <img src="public/assets/images/hero-img.jpg" alt="hero image" />
+          <img src={heroImg} alt="hero image" />
           <Link to="shop">
             <button className="hero-btn">Shop Now</button>
           </Link>
