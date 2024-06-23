@@ -12,6 +12,9 @@ import ErrorPage from './pages/ErrorPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 import CartPage from './pages/CartPage.jsx';
 
+// Define the base name for the router
+const basename = '/shopping-cart';
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
@@ -21,11 +24,12 @@ const router = createBrowserRouter(
       <Route path="/cart" element={<CartPage />} />
       <Route path="*" element={<ErrorPage />} />
     </Route>
-  )
+  ),
+  { basename } // Pass the basename here
 );
 
 function App() {
-  return <RouterProvider router={router} basename="/shopping-cart" />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
