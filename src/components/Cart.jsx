@@ -89,7 +89,7 @@ const Cart = () => {
         {productsInCart.length === 0 ? (
           <h1>You don&apos;t have products in your cart.🥲</h1>
         ) : (
-          <>
+          <section className="items-list-and-clear-cart">
             <div className="cart-items-container">
               {productsInCart.map((item) => {
                 return (
@@ -143,7 +143,7 @@ const Cart = () => {
               </div>
               <button onClick={clearCart}>Check Out</button>
             </div>
-          </>
+          </section>
         )}
       </section>
       <ToastContainer
