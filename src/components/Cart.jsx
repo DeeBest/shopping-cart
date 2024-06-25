@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Cart = () => {
-  const { productsInCart, setProductsInCart, setCartItemsCounter } =
+  const { productsInCart, setProductsInCart, setCartItemsCounter, isDarkMode } =
     useOutletContext();
 
   const clearedCartNotification = () => {
@@ -82,18 +82,31 @@ const Cart = () => {
   const finalCost = (totalCost + shippingFee).toFixed(2);
 
   return (
-    <main className="cart">
+    <main className={`${isDarkMode ? 'dark-cart' : ''} cart`}>
       <h1>Cart</h1>
       <hr />
       <section>
         {productsInCart.length === 0 ? (
-          <h1>You don&apos;t have products in your cart.🥲</h1>
+          <section
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <h1>You don&apos;t have products in your cart.🥲</h1>
+          </section>
         ) : (
           <section className="items-list-and-clear-cart">
             <div className="cart-items-container">
               {productsInCart.map((item) => {
                 return (
-                  <div key={item.id} className="cart-item">
+                  <div
+                    key={item.id}
+                    className={`${
+                      isDarkMode ? 'dark-cart-item' : ''
+                    } cart-item`}
+                  >
                     <div className="cart-item-img-container">
                       <img src={item.image} alt={item.title} />
                     </div>

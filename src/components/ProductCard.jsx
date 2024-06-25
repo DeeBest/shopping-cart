@@ -12,7 +12,7 @@ const ProductCard = ({
   product,
   addedItemNotification,
 }) => {
-  const { productsInCart, setCartItemsCounter, setProductsInCart } =
+  const { productsInCart, setCartItemsCounter, setProductsInCart, isDarkMode } =
     useOutletContext();
   const [isAdded, setIsAdded] = useState(false);
 
@@ -36,7 +36,10 @@ const ProductCard = ({
 
   return (
     <>
-      <section className="product-card" key={id}>
+      <section
+        className={`${isDarkMode ? 'dark-product-card' : ''} product-card`}
+        key={id}
+      >
         <div className="product-img-container">
           <img src={imgUrl} alt={title} />
         </div>

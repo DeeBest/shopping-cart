@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Shop = () => {
-  const { product, setProducts, originalProducts, loading } =
+  const { product, setProducts, originalProducts, loading, isDarkMode } =
     useOutletContext();
 
   const addedItemNotification = () => {
@@ -48,7 +48,7 @@ const Shop = () => {
       return <Spinner />;
     } else {
       return (
-        <main className="shop">
+        <main className={`${isDarkMode ? 'dark-shop' : ''} shop`}>
           <h1>Shop Now</h1>
           <hr />
           <aside className="products-filter">

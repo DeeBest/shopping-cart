@@ -1,6 +1,9 @@
+import { useOutletContext } from 'react-router-dom';
+
 const Contact = () => {
+  const { isDarkMode } = useOutletContext();
   return (
-    <main className="contact-page">
+    <main className={`${isDarkMode ? 'dark-contact-page' : ''} contact-page`}>
       <h1>Contact Us</h1>
       <hr />
       <form className="contact-form" onSubmit={(e) => e.preventDefault()}>

@@ -1,21 +1,31 @@
+/* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
 import { FaGithub } from 'react-icons/fa';
 import { FaLinkedin } from 'react-icons/fa';
 import { FaEnvelope } from 'react-icons/fa';
 
-const Footer = () => {
+const Footer = ({ isDarkMode }) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer>
+    <footer className={isDarkMode && 'dark-header-footer'}>
       <div className="icons-container">
-        <Link to="https://github.com/DeeBest">
+        <Link
+          className={`${isDarkMode ? 'dark-mode-link' : ''} link`}
+          to="https://github.com/DeeBest"
+        >
           <FaGithub className="icon" />
         </Link>
-        <Link to="mailto:simphiwedladla8@gmail.com">
+        <Link
+          className={`${isDarkMode ? 'dark-mode-link' : ''} link`}
+          to="mailto:simphiwedladla8@gmail.com"
+        >
           <FaEnvelope className="icon" />
         </Link>
-        <Link to="https://www.linkedin.com/in/dladla-simphiwe-89061a20a/">
+        <Link
+          className={`${isDarkMode ? 'dark-mode-link' : ''} link`}
+          to="https://www.linkedin.com/in/dladla-simphiwe-89061a20a/"
+        >
           <FaLinkedin className="icon" />
         </Link>
       </div>

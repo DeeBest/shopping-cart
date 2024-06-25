@@ -1,9 +1,17 @@
+/* eslint-disable react/prop-types */
+import { useOutletContext } from 'react-router-dom';
 import ProductCard from './ProductCard';
 
 const PopularItems = ({ heading, popularItems }) => {
+  const { isDarkMode } = useOutletContext();
+
   return (
-    <section className="popular-products-container">
-      <h1>{heading}</h1>
+    <section
+      className={`${
+        isDarkMode ? 'dark-popular-container' : ''
+      } popular-products-container`}
+    >
+      <h1 className={`${isDarkMode ? 'gradient-text' : ''}`}>{heading}</h1>
       <hr />
       <div className="products-cards-container">
         {popularItems.map((product) => {
@@ -15,6 +23,7 @@ const PopularItems = ({ heading, popularItems }) => {
               imgUrl={product.image}
               title={product.title}
               price={product.price}
+              isDarkMode={isDarkMode}
             />
           );
         })}

@@ -1,10 +1,17 @@
+/* eslint-disable react/prop-types */
+
 import { PiShoppingCart } from 'react-icons/pi';
 import { HiOutlineShoppingBag } from 'react-icons/hi2';
 import { NavLink } from 'react-router-dom';
+import DarkMode from './DarkMode';
 
-const Header = ({ cartItemsCounter }) => {
+const Header = ({ cartItemsCounter, isDarkMode, setIsDarkMode }) => {
+  const handleToggleDarkMode = (isDarkMode) => {
+    setIsDarkMode(isDarkMode);
+  };
+
   return (
-    <header>
+    <header className={isDarkMode && 'dark-header-footer'}>
       <div className="logo-container">
         <HiOutlineShoppingBag className="header-icon logo-icon" />
         <h1>DeeBest Shop</h1>
@@ -13,7 +20,11 @@ const Header = ({ cartItemsCounter }) => {
         <ul>
           <li>
             <NavLink
-              className={({ isActive }) => (isActive ? 'active' : '')}
+              className={({ isActive }) =>
+                `${isActive ? 'active' : ''} link ${
+                  isDarkMode ? 'dark-mode-link' : ''
+                }`
+              }
               to="/"
             >
               Home
@@ -21,7 +32,11 @@ const Header = ({ cartItemsCounter }) => {
           </li>
           <li>
             <NavLink
-              className={({ isActive }) => (isActive ? 'active' : '')}
+              className={({ isActive }) =>
+                `${isActive ? 'active' : ''} link ${
+                  isDarkMode ? 'dark-mode-link' : ''
+                }`
+              }
               to="shop"
             >
               Shop
@@ -29,7 +44,11 @@ const Header = ({ cartItemsCounter }) => {
           </li>
           <li>
             <NavLink
-              className={({ isActive }) => (isActive ? 'active' : '')}
+              className={({ isActive }) =>
+                `${isActive ? 'active' : ''} link ${
+                  isDarkMode ? 'dark-mode-link' : ''
+                }`
+              }
               to="contact"
             >
               Contact
@@ -37,10 +56,19 @@ const Header = ({ cartItemsCounter }) => {
           </li>
         </ul>
       </nav>
+      <DarkMode
+        isDarkMode={isDarkMode}
+        setIsDarkMode={setIsDarkMode}
+        handleToggleDarkMode={handleToggleDarkMode}
+      />
       <div className="cart-container">
         <span className="item-counter">{cartItemsCounter}</span>
         <NavLink
-          className={({ isActive }) => (isActive ? 'active' : '')}
+          className={({ isActive }) =>
+            `${isActive ? 'active' : ''} link ${
+              isDarkMode ? 'dark-mode-link' : ''
+            }`
+          }
           to="cart"
         >
           <PiShoppingCart className="header-icon" />

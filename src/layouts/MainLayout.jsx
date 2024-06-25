@@ -12,6 +12,9 @@ const MainLayout = () => {
   const [itemsInCart, setAddItemsInCart] = useState([]);
   const [productsInCart, setProductsInCart] = useState([]);
   const [cartItemsCounter, setCartItemsCounter] = useState(0);
+  const [isDarkMode, setIsDarkMode] = useState(
+    JSON.parse(localStorage.getItem('themeMode')) || false
+  );
 
   useEffect(() => {
     try {
@@ -36,7 +39,11 @@ const MainLayout = () => {
         <Spinner />
       ) : (
         <>
-          <Header cartItemsCounter={cartItemsCounter} />
+          <Header
+            setIsDarkMode={setIsDarkMode}
+            isDarkMode={isDarkMode}
+            cartItemsCounter={cartItemsCounter}
+          />
           <Outlet
             context={{
               products,
@@ -47,9 +54,11 @@ const MainLayout = () => {
               setCartItemsCounter,
               productsInCart,
               setProductsInCart,
+              setIsDarkMode,
+              isDarkMode,
             }}
           />
-          <Footer />
+          <Footer isDarkMode={isDarkMode} />
         </>
       )}
     </>
