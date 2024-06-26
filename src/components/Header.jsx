@@ -8,7 +8,7 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import { useState } from 'react';
 
 const Header = ({ cartItemsCounter, isDarkMode, setIsDarkMode }) => {
-  const [isMobile, setIsMobile] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   const toggleIsMobile = () => setIsMobile(!isMobile);
 
